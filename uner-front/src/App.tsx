@@ -3,27 +3,27 @@ import { getEnglishWords, getKoreanGrading } from '@/hook'
 import { Word } from '@/util/types/word'
 
 function App() {
-  const [data, setData] = useState<Word[]>([])
+  const [wordList, setWordList] = useState<Word[]>([])
   const [curWordIndex, setCurWordIndex] = useState(0)
-  const curWord = data[curWordIndex]
+  const curWord = wordList[curWordIndex]
 
   const [input, setInput] = useState('')
-  const [canGoNext, setCanGoNext] = useState(false)
-  const [response, setResponse] = useState('')
+  const [isAnswer, setIsAnswer] = useState<boolean | null>(null)
+  const [description, setDescription] = useState('')
 
   useEffect(() => {
-    console.log('실행')
+    // 단어 리스트 Fetching
     getEnglishWords({}).then(response => {
-      setData(response.words)
+      setWordList(response.words)
     })
   }, [])
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (input !== '') {
+    if (input !== '' && isAnswer === null) {
       getKoreanGrading({ givenWord: curWord.english, userPrompt: input }).then(({ is_answer, description }) => {
-        if (is_answer) setCanGoNext(true)
-        setResponse(description)
+        setIsAnswer(is_answer)
+        setDescription(description)
       })
     }
   }
@@ -31,26 +31,39 @@ function App() {
   const goNext = () => {
     setInput('')
     setCurWordIndex(prev => prev + 1)
-    setCanGoNext(false)
-    setResponse('')
+    setIsAnswer(null)
+    setDescription('')
   }
 
   return (
-    <div className="h-screen w-screen flex flex-col justify-center items-center gap-10">
-      {data.length && (
-        <>
+    <>
+      {wordList.length && (
+        <div className="h-screen w-screen flex flex-col justify-center items-center gap-10">
           <div className="text-5xl font-bold font-serif">{curWord.english}</div>
           <form onSubmit={onSubmit}>
             <input value={input} onChange={event => setInput(event.target.value)} />
-            <button className="border-0 border-gray-600" type="submit">
-              submit
-            </button>
+            {isAnswer === null && <button type="submit">submit</button>}
           </form>
-          {canGoNext && <button onClick={goNext}>다음 문제</button>}
-          {response !== '' && <div>{response}</div>}
-        </>
+          {isAnswer !== null && (
+            <div className="flex flex-col items-center gap-2">
+              <div className="flex flex-col items-center">
+                <div>{isAnswer ? '맞았습니다' : '틀렸습니다'}</div>
+                <button onClick={goNext}>다음 문제</button>
+              </div>
+              {isAnswer === true ? (
+                description !== '' && <div>{description}</div>
+              ) : (
+                <div>
+                  {curWord.definitions.map(val => (
+                    <span>{val.definition}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
       )}
-    </div>
+    </>
   )
 }
 
