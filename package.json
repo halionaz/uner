@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "@tanstack/react-query": "^5.62.15"
-  },
-  "devDependencies": {
-    "@tanstack/eslint-plugin-query": "^5.62.15"
-  }
-}
