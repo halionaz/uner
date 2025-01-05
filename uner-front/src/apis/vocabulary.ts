@@ -1,5 +1,6 @@
 import { apiInterface } from '@/util/axios/apiInterface'
 import { Word } from '@/util/types/word'
+import { useSuspenseQuery } from '@tanstack/react-query'
 
 interface GetEnglishWordsRequest {
   wordCount?: number
@@ -13,9 +14,13 @@ interface GetEnglishWordsResponse {
   words: Word[]
 }
 
-export const getEnglishWords = async (params: GetEnglishWordsRequest) => {
+const getEnglishWords = async (params: GetEnglishWordsRequest) => {
   const response = await apiInterface.get<GetEnglishWordsResponse>('/eng-to-kor/words', { params })
   return response.data
+}
+
+export const useGetEnglishWords = (params: GetEnglishWordsRequest) => {
+  return useSuspenseQuery({ queryFn: () => getEnglishWords(params), queryKey: ['english-words', params] })
 }
 
 interface GetKoreanGradingRequest {
