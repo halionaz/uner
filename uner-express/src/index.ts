@@ -80,7 +80,7 @@ app.get('/eng-to-kor/answer', (req, res) => {
     return;
   }
 
-  const prompt = `Given Word : ${givenWord}, User's Answer : ${userPrompt}`;
+  const prompt = `영어 단어 : ${givenWord}, 답변 : ${userPrompt}`;
 
   const response = openai.chat.completions.create({
     model: 'gpt-4o-mini',
@@ -91,10 +91,10 @@ app.get('/eng-to-kor/answer', (req, res) => {
         content: [
           {
             type: 'text',
-            text: `당신은 한국인 학생을 가르치는 영어 교사입니다. 주어진 영어 단어와 비교해서 유저가 제시하는 한국어 단어의 뜻을 판단하고, 적절한 한글 뜻이 제시되었는지 판별해주세요. 
-            답변의 json_object 스키마는 다음과 같습니다.
-            is_answer로는 true / false boolean의 타입으로 적합성 여부를 판별해주세요.
-            description으로는 이에 대한 부연 설명을 한국어로 작성해주세요.`,
+            text: `당신은 한국인 학생을 가르치는 영어 교사에요. 주어진 영어 단어와 비교해서 유저가 제시하는 한국어 단어의 뜻을 판단하고, 적절한 한글 뜻이 제시되었는지 판별해주세요. 
+            답변의 json_object 스키마는 다음과 같아요.
+            is_answer로는 true / false boolean의 타입으로 유저가 단어의 뜻을 올바르게 해석했는지 적합성 여부를 판별해주세요. 여러 의미를 가진 단어라면 그 중 하나의 뜻만 제시되어도 정답 처리해주세요. 의미가 맞더라도 품사가 다르다면 오답 처리해주세요.
+            description으로는 여러 의미를 가진 단어일 때 유저가 제시한 답이 아닌 다른 뜻들을 문장으로 제시해주세요.`,
           },
         ],
       },
@@ -106,9 +106,8 @@ app.get('/eng-to-kor/answer', (req, res) => {
     response_format: {
       type: 'json_object',
     },
-    temperature: 0.8,
+    temperature: 0.5,
     max_completion_tokens: 256,
-    top_p: 1,
     frequency_penalty: 0,
     presence_penalty: 0,
   });
