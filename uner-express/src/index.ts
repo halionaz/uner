@@ -2,6 +2,8 @@ import OpenAI from 'openai';
 import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
+import { GetAnswerRequest, GetWordsRequest } from './types/eng-to-kor';
+import { Word } from './types/word';
 
 dotenv.config();
 
@@ -17,12 +19,57 @@ const openai = new OpenAI({
   apiKey: OPENAI_API_KEY,
 });
 
-app.get('/problems', (req, res) => {
-  res.json();
+app.get('/eng-to-kor/words', (req, res) => {
+  const query = req.query as GetWordsRequest;
+  const words: Word[] = [
+    {
+      id: 1,
+      english: 'ephemeral',
+      definitions: [
+        { definition: '수명이 짧은', partOfSpeech: 'adjective' },
+        { definition: '단명하는', partOfSpeech: 'adjective' },
+        { definition: '덧없는', partOfSpeech: 'adjective' },
+      ],
+      difficulty: 5,
+      topic: [],
+    },
+    {
+      id: 2,
+      english: 'obfuscate',
+      definitions: [{ definition: '혼란스럽게 만들다', partOfSpeech: 'verb' }],
+      difficulty: 5,
+      topic: [],
+    },
+    {
+      id: 3,
+      english: 'ubiquitous',
+      definitions: [
+        { definition: '어디에나 있는', partOfSpeech: 'adjective' },
+        { definition: '아주 흔한', partOfSpeech: 'adjective' },
+      ],
+      difficulty: 5,
+      topic: [],
+    },
+    {
+      id: 4,
+      english: 'character',
+      definitions: [
+        { definition: '성격', partOfSpeech: 'noun' },
+        { definition: '특성', partOfSpeech: 'noun' },
+        { definition: '등장인물', partOfSpeech: 'noun' },
+        { definition: '배역', partOfSpeech: 'noun' },
+      ],
+      difficulty: 2,
+      topic: [],
+    },
+  ];
+  res.status(200).json({
+    words,
+  });
 });
 
-app.get('/prompt', (req, res) => {
-  const { givenWord, userPrompt } = req.query;
+app.get('/eng-to-kor/answer', (req, res) => {
+  const { givenWord, userPrompt } = req.query as GetAnswerRequest;
 
   if (!givenWord) {
     res.status(400).json({ message: '단어가 주어지지 않았습니다' });
