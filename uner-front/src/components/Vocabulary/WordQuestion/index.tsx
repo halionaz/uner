@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { getKoreanGrading } from '@/apis/vocabulary'
 import { Word } from '@/util/types/word'
 import Button from '@/components/ui/Button'
+import Input from '@/components/ui/Input'
 
 interface Props {
   curWord: Word
@@ -15,28 +16,31 @@ const WordQuestion = ({ curWord, goToNextWord }: Props) => {
 
   const isAnswer = answerState !== null
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (input !== '' && !isAnswer) {
       getKoreanGrading({ givenWord: curWord.english, userPrompt: input }).then(({ is_answer, description }) => {
         setAnswerState(is_answer)
         setDescription(description)
       })
+    } else {
+      // TODO: input 없을 때 에러 처리
     }
   }
 
   const handleNextButton = () => {
+    goToNextWord()
+
     setInput('')
     setDescription('')
     setAnswerState(null)
-    goToNextWord()
   }
 
   return (
     <div className="flex-grow flex flex-col justify-center items-center gap-10">
       <div className="text-5xl font-bold font-serif text-slate-900">{curWord.english}</div>
-      <form onSubmit={onSubmit}>
-        <input value={input} onChange={event => setInput(event.target.value)} />
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+        <Input className="w-72 h-10 text-center" value={input} onChange={event => setInput(event.target.value)} />
         {!isAnswer && <Button type="submit">submit</Button>}
       </form>
       {isAnswer && (

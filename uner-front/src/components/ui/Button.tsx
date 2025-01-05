@@ -1,15 +1,6 @@
-import { PropsWithChildren } from 'react'
-
-interface Props extends PropsWithChildren {
-  type?: 'submit' | 'reset' | 'button' | undefined
-  onClick?: () => void
-}
-const Button = ({ children, onClick, type }: Props) => {
-  return (
-    <button onClick={onClick} type={type}>
-      {children}
-    </button>
-  )
+type Props = React.ButtonHTMLAttributes<HTMLButtonElement>
+const Button = ({ className, ...props }: Props) => {
+  return <button className={`border rounded-md border-slate-900 ${className}`} {...props} />
 }
 
 export default Button
