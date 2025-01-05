@@ -1,6 +1,8 @@
 import { useState } from 'react'
-import WordQuestion from '@/components/Vocabulary/WordQuestion'
 import { useGetEnglishWords } from '@/apis/vocabulary'
+
+import WordQuestion from '@/components/Vocabulary/WordQuestion'
+import StatusBar from '@/components/Vocabulary/StatusBar'
 
 const VocabularyPage = () => {
   const [wordCount, setWordCount] = useState(4)
@@ -14,7 +16,12 @@ const VocabularyPage = () => {
     setCurWordIndex(prev => prev + 1)
   }
 
-  return <WordQuestion curWord={wordList[curWordIndex]} goToNextWord={goToNextWord} />
+  return (
+    <div className="h-screen w-screen flex flex-col">
+      <StatusBar totalCount={wordCount} currentCount={curWordIndex} />
+      <WordQuestion curWord={wordList[curWordIndex]} goToNextWord={goToNextWord} />
+    </div>
+  )
 }
 
 export default VocabularyPage

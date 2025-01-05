@@ -13,9 +13,11 @@ const WordQuestion = ({ curWord, goToNextWord }: Props) => {
   const [answerState, setAnswerState] = useState<boolean | null>(null)
   const [description, setDescription] = useState('')
 
+  const isAnswer = answerState !== null
+
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (input !== '' && isAnswer === null) {
+    if (input !== '' && !isAnswer) {
       getKoreanGrading({ givenWord: curWord.english, userPrompt: input }).then(({ is_answer, description }) => {
         setAnswerState(is_answer)
         setDescription(description)
@@ -30,11 +32,9 @@ const WordQuestion = ({ curWord, goToNextWord }: Props) => {
     goToNextWord()
   }
 
-  const isAnswer = answerState !== null
-
   return (
-    <div className="h-screen w-screen flex flex-col justify-center items-center gap-10">
-      <div className="text-5xl font-bold font-serif text-gray-900">{curWord.english}</div>
+    <div className="flex-grow flex flex-col justify-center items-center gap-10">
+      <div className="text-5xl font-bold font-serif text-slate-900">{curWord.english}</div>
       <form onSubmit={onSubmit}>
         <input value={input} onChange={event => setInput(event.target.value)} />
         {!isAnswer && <Button type="submit">submit</Button>}
@@ -49,8 +49,8 @@ const WordQuestion = ({ curWord, goToNextWord }: Props) => {
             description !== '' && <div>{description}</div>
           ) : (
             <div className="flex flex-row gap-1">
-              {curWord.definitions.map(val => (
-                <span>{val.definition}</span>
+              {curWord.definitions.map((val, index) => (
+                <span key={`definition-${val.partOfSpeech}-${index}`}>{val.definition}</span>
               ))}
             </div>
           )}
