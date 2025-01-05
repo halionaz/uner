@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { getCheckWordAccuracy } from './hook'
+import { getCheckWordAccuracy } from '@/hook'
 
 function App() {
   const data = [

@@ -1,4 +1,4 @@
-import { apiInterface } from './axios/apiInterface'
+import { apiInterface } from '@/util/axios/apiInterface'
 
 interface GetCheckWordAccuracyRequest {
   givenWord: string
