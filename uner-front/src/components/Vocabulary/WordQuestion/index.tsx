@@ -38,7 +38,7 @@ const WordQuestion = ({ curWord, goToNextWord }: Props) => {
 
   return (
     <div className="flex-grow flex flex-col justify-center items-center gap-10">
-      <div className="text-5xl font-bold font-serif text-slate-900">{curWord.english}</div>
+      <div className="text-5xl font-bold font-serif text-black">{curWord.english}</div>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <Input className="w-72 h-10 text-center" value={input} onChange={event => setInput(event.target.value)} />
         {!isAnswer && <Button type="submit">submit</Button>}

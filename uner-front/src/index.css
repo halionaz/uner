@@ -54,6 +54,7 @@ h6 {
 p {
   text-wrap: pretty;
 }
+
 h1,
 h2,
 h3,
@@ -69,4 +70,8 @@ h6 {
 #root,
 #__next {
   isolation: isolate;
+}
+
+*:focus {
+  outline: none;
 }

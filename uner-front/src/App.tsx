@@ -6,7 +6,7 @@ import VocabularyPage from '@/pages/VocabularyPage'
 function App() {
   return (
     <Suspense fallback={<LoadingScreen />}>
-      <div className="bg-stone-50">
+      <div className="bg-white text-black">
         <VocabularyPage />
       </div>
     </Suspense>
