@@ -78,8 +78,8 @@ app.get('/eng-to-kor/words', (req, res) => {
   });
 });
 
-app.get('/eng-to-kor/answer', (req, res) => {
-  const { givenWord, userPrompt } = req.query as GetAnswerRequest;
+app.post('/eng-to-kor/answer', (req, res) => {
+  const { givenWord, userPrompt } = req.body as GetAnswerRequest;
 
   if (!givenWord) {
     res.status(400).json({ message: '단어가 주어지지 않았습니다' });

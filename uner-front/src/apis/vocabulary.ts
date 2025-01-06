@@ -1,6 +1,6 @@
 import { apiInterface } from '@/util/axios/apiInterface'
 import { Word } from '@/util/types/word'
-import { useSuspenseQuery } from '@tanstack/react-query'
+import { useMutation, useSuspenseQuery } from '@tanstack/react-query'
 
 interface GetEnglishWordsRequest {
   wordCount?: number
@@ -23,16 +23,22 @@ export const useGetEnglishWords = (params: GetEnglishWordsRequest) => {
   return useSuspenseQuery({ queryFn: () => getEnglishWords(params), queryKey: ['english-words', params] })
 }
 
-interface GetKoreanGradingRequest {
+interface PostCheckKoreanAnswerRequest {
   givenWord: string
   userPrompt: string
 }
-interface GetKoreanGradingResponse {
+interface PostCheckKoreanAnswerResponse {
   is_answer: boolean
   description: string
 }
 
-export const getKoreanGrading = async (params: GetKoreanGradingRequest) => {
-  const response = await apiInterface.get<GetKoreanGradingResponse>('/eng-to-kor/answer', { params })
+const postCheckKoreanAnswer = async (body: PostCheckKoreanAnswerRequest) => {
+  const response = await apiInterface.post<PostCheckKoreanAnswerResponse>('/eng-to-kor/answer', body)
   return response.data
+}
+
+export const usePostCheckKoreanAnswer = () => {
+  return useMutation({
+    mutationFn: postCheckKoreanAnswer,
+  })
 }
