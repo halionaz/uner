@@ -3,6 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "cd uner-front && yarn dev & cd uner-express && yarn dev"
+    "dev": "concurrently \"cd uner-front && yarn dev\" \"cd uner-express && yarn dev\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
   }
 }
