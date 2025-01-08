@@ -1,0 +1,8 @@
+{
+  "name": "uner",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "cd uner-front && yarn dev & cd uner-express && yarn dev"
+  }
+}
