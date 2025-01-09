@@ -17,7 +17,7 @@ interface ExampleSentence {
   translation: string
 }
 
-interface Definition {
+export interface Definition {
   definition: string
   partOfSpeech: PartOfSpeech
 }

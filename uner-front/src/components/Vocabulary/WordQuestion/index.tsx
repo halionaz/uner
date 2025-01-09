@@ -4,9 +4,9 @@ import { Word } from '@/util/types/word'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
 import { usePostCheckKoreanAnswer } from '@/apis/vocabulary'
-import AnswerMark from '@/components/etc/AnswerMark'
 import Tooltip from '@/components/ui/Tooltip'
 import Icons from '@/assets/Icons'
+import AnswerSheet from '@/components/Vocabulary/WordQuestion/AnswerSheet'
 
 interface Props {
   curWord: Word
@@ -48,8 +48,6 @@ const WordQuestion = ({ curWord, goToNextWord }: Props) => {
     setAnswerState(null)
   }
 
-  const definitionCount = curWord.definitions.length
-
   return (
     <div className="flex flex-grow flex-col items-center justify-center gap-10">
       <div className="font-serif text-7xl font-bold">{curWord.english}</div>
@@ -76,24 +74,11 @@ const WordQuestion = ({ curWord, goToNextWord }: Props) => {
         <div className="h-20">
           {isSubmit ? (
             isAnswer ? (
-              <div className="flex h-20 w-[600px] flex-row items-center justify-between gap-2">
-                <div className="flex flex-row items-center gap-4">
-                  <AnswerMark isAnswer={answerState} />
-                  <div className="flex flex-row items-center gap-1">
-                    {curWord.definitions.map((val, index) => {
-                      return (
-                        <span key={`definition-${val.partOfSpeech}-${index}`}>
-                          {val.definition}
-                          {index !== definitionCount - 1 && ','}
-                        </span>
-                      )
-                    })}
-                  </div>
-                </div>
-                <div className="flex flex-col items-center">
-                  <Button onClick={handleNextButton}>다음 문제</Button>
-                </div>
-              </div>
+              <AnswerSheet
+                answerState={answerState}
+                definitions={curWord.definitions}
+                handleNextButton={handleNextButton}
+              />
             ) : (
               <div>답변을 기다리는 중 ...</div>
             )
