@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { Word } from '@/util/types/word'
 import Button from '@/components/ui/Button'
@@ -7,7 +7,7 @@ import { usePostCheckKoreanAnswer } from '@/apis/vocabulary'
 import Tooltip from '@/components/ui/Tooltip'
 import Icons from '@/assets/Icons'
 import AnswerSheet from '@/components/Vocabulary/WordQuestion/AnswerSheet'
-import { useTts } from 'tts-react'
+import { useSpeechSynthesis } from 'react-speech-kit'
 
 interface Props {
   curWord: Word
@@ -19,7 +19,9 @@ const WordQuestion = ({ curWord, goToNextWord }: Props) => {
   const [description, setDescription] = useState('')
 
   const { mutate: checkInput, isPending } = usePostCheckKoreanAnswer()
-  const { state: ttsState, play: playTts } = useTts({ children: <>{curWord.english}</> })
+
+  const speakFlag = useRef(false)
+  const { speak, speaking } = useSpeechSynthesis()
 
   const isAnswer = answerState !== null // 답변이 나왔는지
   const isSubmit = isAnswer || isPending // 제출이 완료된 상태인지
@@ -47,22 +49,28 @@ const WordQuestion = ({ curWord, goToNextWord }: Props) => {
     setInput('')
     setDescription('')
     setAnswerState(null)
+    speakFlag.current = false
   }
 
-  const handleTts = () => {
-    if (!ttsState.isPlaying) playTts()
-  }
+  const handleSpeak = useCallback(() => {
+    if (!speaking) speak({ text: curWord.english })
+  }, [speak, curWord.english, speaking])
 
   useEffect(() => {
-    playTts()
-  }, [playTts])
+    if (!speakFlag.current) {
+      handleSpeak()
+      if (speaking) {
+        speakFlag.current = true
+      }
+    }
+  }, [speaking, handleSpeak])
 
   return (
     <div className="flex flex-grow flex-col items-center justify-center gap-20">
-      <div className="flex items-center gap-4">
+      <div className="flex items-baseline gap-4">
         <div className="font-serif text-7xl font-bold">{curWord.english}</div>
         <Tooltip contents="발음을 들어보세요!" position="right" maintenance={false}>
-          <button onClick={handleTts}>
+          <button onClick={handleSpeak}>
             <Icons.SoundIcon className="size-7" />
           </button>
         </Tooltip>
