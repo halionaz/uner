@@ -61,9 +61,17 @@ const WordQuestion = ({ curWord, goToNextWord }: Props) => {
             onChange={event => setInput(event.target.value)}
             disabled={isSubmit}
           />
-          <Tooltip contents={<>{description}</>} position="bottom">
-            <Icons.QuestionCircle />
-          </Tooltip>
+          {isSubmit ? (
+            isAnswer ? (
+              <Tooltip contents={<>{description}</>} position="bottom">
+                <Icons.QuestionCircle />
+              </Tooltip>
+            ) : (
+              <Icons.Loader />
+            )
+          ) : (
+            <Icons.Microphone />
+          )}
         </div>
         <div className="h-20">
           {isSubmit ? (
