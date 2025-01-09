@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { GetAnswerRequest, GetWordsRequest } from '../types/eng-to-kor';
-import { Word } from '../types/word';
-import { openai } from '../utils/OpenAI';
+import { Word } from '@interface/word';
+import { openai } from '@/utils/OpenAI';
+import { GetAnswerRequest, GetWordsRequest } from '@/types/eng-to-kor';
 
 const router = Router();
 

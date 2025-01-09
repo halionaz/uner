@@ -1,4 +1,4 @@
-type PartOfSpeech =
+export type PartOfSpeech =
   | 'verb'
   | 'noun'
   | 'adverb'
@@ -9,15 +9,15 @@ type PartOfSpeech =
   | 'interjection'
   | 'idioms';
 
-type Topic = ''; // TODO: Category 세분화
-type Importance = 'TOEFL' | 'KSAT' | 'IELTS' | 'SAT'; //TODO: Importance 세분화
+export type Topic = ''; // TODO: Category 세분화
+export type Importance = 'TOEFL' | 'KSAT' | 'IELTS' | 'SAT'; //TODO: Importance 세분화
 
-interface ExampleSentence {
+export interface ExampleSentence {
   sentence: string;
   translation: string;
 }
 
-interface Definition {
+export interface Definition {
   definition: string;
   partOfSpeech: PartOfSpeech;
 }
@@ -33,5 +33,4 @@ export interface Word {
   importance?: Importance[];
   synonyms?: string[];
   antonyms?: string[];
-  // pronounce?
 }

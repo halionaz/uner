@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
-import { engToKor } from './router/eng-to-kor';
+import { engToKor } from '@/router/eng-to-kor';
 
 dotenv.config();
 

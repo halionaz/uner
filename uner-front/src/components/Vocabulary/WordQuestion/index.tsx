@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { Word } from '@/util/types/word'
+import { Word } from '@interface/word'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
 import { usePostCheckKoreanAnswer } from '@/apis/vocabulary'

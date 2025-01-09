@@ -24,8 +24,9 @@
 
     /* Paths */
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@interface/*": ["../interface/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "../interface"]
 }
