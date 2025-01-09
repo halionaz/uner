@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Word } from '@/util/types/word'
 import Button from '@/components/ui/Button'
@@ -7,6 +7,7 @@ import { usePostCheckKoreanAnswer } from '@/apis/vocabulary'
 import Tooltip from '@/components/ui/Tooltip'
 import Icons from '@/assets/Icons'
 import AnswerSheet from '@/components/Vocabulary/WordQuestion/AnswerSheet'
+import { useTts } from 'tts-react'
 
 interface Props {
   curWord: Word
@@ -18,6 +19,7 @@ const WordQuestion = ({ curWord, goToNextWord }: Props) => {
   const [description, setDescription] = useState('')
 
   const { mutate: checkInput, isPending } = usePostCheckKoreanAnswer()
+  const { state: ttsState, play: playTts } = useTts({ children: <>{curWord.english}</> })
 
   const isAnswer = answerState !== null // 답변이 나왔는지
   const isSubmit = isAnswer || isPending // 제출이 완료된 상태인지
@@ -47,10 +49,25 @@ const WordQuestion = ({ curWord, goToNextWord }: Props) => {
     setAnswerState(null)
   }
 
+  const handleTts = () => {
+    if (!ttsState.isPlaying) playTts()
+  }
+
+  useEffect(() => {
+    playTts()
+  }, [playTts])
+
   return (
-    <div className="flex flex-grow flex-col items-center justify-center gap-10">
-      <div className="font-serif text-7xl font-bold">{curWord.english}</div>
-      <form className="flex flex-col items-center gap-4" onSubmit={handleSubmit}>
+    <div className="flex flex-grow flex-col items-center justify-center gap-20">
+      <div className="flex items-center gap-4">
+        <div className="font-serif text-7xl font-bold">{curWord.english}</div>
+        <Tooltip contents="발음을 들어보세요!" position="right" maintenance={false}>
+          <button onClick={handleTts}>
+            <Icons.SoundIcon className="size-7" />
+          </button>
+        </Tooltip>
+      </div>
+      <form className="flex flex-col items-center gap-12" onSubmit={handleSubmit}>
         <div className="flex items-center gap-2">
           <Input
             className={`h-10 w-72 text-center text-xl font-semibold ${answerState === false && 'text-gray-light-2'}`}
@@ -60,14 +77,16 @@ const WordQuestion = ({ curWord, goToNextWord }: Props) => {
           />
           {isSubmit ? (
             isAnswer ? (
-              <Tooltip contents={<>{description}</>} position="bottom">
-                <Icons.QuestionCircle />
+              <Tooltip contents={description} position="bottom">
+                <Icons.QuestionCircleIcon />
               </Tooltip>
             ) : (
-              <Icons.Loader />
+              <Icons.LoaderIcon />
             )
           ) : (
-            <Icons.Microphone />
+            <button>
+              <Icons.MicrophoneIcon />
+            </button>
           )}
         </div>
         <div className="h-20">

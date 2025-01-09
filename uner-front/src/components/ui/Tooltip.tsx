@@ -3,8 +3,9 @@ import { PropsWithChildren, useState } from 'react'
 type PositionType = 'bottom' | 'left' | 'right' | 'top'
 
 interface Props extends PropsWithChildren {
-  contents: JSX.Element
+  contents: string
   position: PositionType
+  maintenance?: boolean
 }
 
 const positionStyle: { [key in PositionType]: string } = {
@@ -14,11 +15,11 @@ const positionStyle: { [key in PositionType]: string } = {
   right: 'left-[calc(100%+5px)]',
 }
 
-const Tooltip = ({ children, contents, position }: Props) => {
+const Tooltip = ({ children, contents, position, maintenance = true }: Props) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleOpen = () => {
-    setIsOpen(prev => !prev)
+    if (maintenance) setIsOpen(prev => !prev)
   }
 
   return (
