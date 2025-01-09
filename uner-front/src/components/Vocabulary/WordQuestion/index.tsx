@@ -29,7 +29,6 @@ const WordQuestion = ({ curWord, goToNextWord }: Props) => {
         { givenWord: curWord.english, userPrompt: input },
         {
           onSuccess: ({ is_answer, description }) => {
-            if (!is_answer) setInput('')
             setAnswerState(is_answer)
             setDescription(description)
           },
@@ -54,7 +53,7 @@ const WordQuestion = ({ curWord, goToNextWord }: Props) => {
       <form className="flex flex-col items-center gap-4" onSubmit={handleSubmit}>
         <div className="flex items-center gap-2">
           <Input
-            className="h-10 w-72 text-center text-xl font-semibold"
+            className={`h-10 w-72 text-center text-xl font-semibold ${answerState === false && 'text-gray-light-2'}`}
             value={input}
             onChange={event => setInput(event.target.value)}
             disabled={isSubmit}

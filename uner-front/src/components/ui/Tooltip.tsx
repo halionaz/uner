@@ -29,7 +29,7 @@ const Tooltip = ({ children, contents, position }: Props) => {
           {children}
         </button>
         <div
-          className={`${isOpen ? 'visible' : 'invisible group-hover/tooltip:visible'} absolute z-10 ${positionStyle[position]} max-h-[50lvh] w-[max-content] max-w-[50lvw] overflow-hidden overflow-ellipsis text-pretty bg-black px-2 py-1 text-white`}
+          className={`${isOpen ? 'visible' : 'invisible group-hover/tooltip:visible'} absolute z-10 ${positionStyle[position]} max-h-[50lvh] w-[max-content] max-w-[50lvw] overflow-hidden overflow-ellipsis break-words break-all bg-black px-2 py-1 text-white`}
         >
           {contents}
         </div>
