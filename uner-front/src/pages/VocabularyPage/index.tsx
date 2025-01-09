@@ -3,9 +3,10 @@ import { useGetEnglishWords } from '@/apis/vocabulary'
 
 import WordQuestion from '@/components/Vocabulary/WordQuestion'
 import StatusBar from '@/components/Vocabulary/StatusBar'
+import Ready from '@/components/Vocabulary/Ready'
 
 const VocabularyPage = () => {
-  const [wordCount, setWordCount] = useState(4)
+  const [wordCount] = useState(4)
 
   const { data } = useGetEnglishWords({ wordCount })
   const wordList = data.words
@@ -13,13 +14,23 @@ const VocabularyPage = () => {
   const [curWordIndex, setCurWordIndex] = useState(0)
 
   const goToNextWord = () => {
+    if (curWordIndex === wordCount) {
+      setCurWordIndex(0)
+      return
+    }
     setCurWordIndex(prev => prev + 1)
   }
 
   return (
     <div className="h-screen w-screen flex flex-col">
-      <StatusBar totalCount={wordCount} currentCount={curWordIndex} />
-      <WordQuestion curWord={wordList[curWordIndex]} goToNextWord={goToNextWord} />
+      {curWordIndex === 0 ? (
+        <Ready goToNextWord={goToNextWord} />
+      ) : (
+        <>
+          <StatusBar totalCount={wordCount} currentCount={curWordIndex} />
+          <WordQuestion curWord={wordList[curWordIndex - 1]} goToNextWord={goToNextWord} />
+        </>
+      )}
     </div>
   )
 }
