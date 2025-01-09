@@ -24,7 +24,7 @@ const VocabularyPage = () => {
   return (
     <div className="h-screen w-screen flex flex-col">
       {curWordIndex === 0 ? (
-        <Ready goToNextWord={goToNextWord} />
+        <Ready goToNextWord={goToNextWord} wordCount={wordCount} />
       ) : (
         <>
           <StatusBar totalCount={wordCount} currentCount={curWordIndex} />
