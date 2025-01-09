@@ -1,7 +1,7 @@
 const Home = () => {
   return (
-    <div className="h-full w-full flex justify-center items-center">
-      <div className="text-7xl font-bold font-serif">uner</div>
+    <div className="flex h-full w-full items-center justify-center">
+      <div className="font-serif text-7xl font-bold">uner</div>
     </div>
   )
 }

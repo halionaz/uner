@@ -6,9 +6,9 @@ interface Props {
 }
 const Ready = ({ wordCount, goToNextWord }: Props) => {
   return (
-    <div className="h-full w-full flex flex-col justify-center items-center gap-4">
-      <div className="flex flex-row gap-1 text-5xl items-center">
-        <span className="font-bold text-7xl">{wordCount}</span>문제
+    <div className="flex h-full w-full flex-col items-center justify-center gap-4">
+      <div className="flex flex-row items-center gap-1 text-5xl">
+        <span className="text-7xl font-bold">{wordCount}</span>문제
       </div>
       <Button onClick={goToNextWord}>시작하기</Button>
     </div>

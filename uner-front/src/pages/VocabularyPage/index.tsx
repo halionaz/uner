@@ -22,7 +22,7 @@ const VocabularyPage = () => {
   }
 
   return (
-    <div className="h-screen w-screen flex flex-col">
+    <div className="flex h-screen w-screen flex-col">
       {curWordIndex === 0 ? (
         <Ready goToNextWord={goToNextWord} wordCount={wordCount} />
       ) : (

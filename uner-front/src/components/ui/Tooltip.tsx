@@ -23,7 +23,7 @@ const Tooltip = ({ children, contents, position }: Props) => {
 
   return (
     <>
-      {isOpen && <div className="fixed top-0 left-0 z-0 h-lvh w-lvw" onClick={toggleOpen} />}
+      {isOpen && <div className="fixed left-0 top-0 z-0 h-lvh w-lvw" onClick={toggleOpen} />}
       <span className={`group/tooltip relative flex items-center justify-center`}>
         <button className="z-10 cursor-pointer" onClick={toggleOpen}>
           {children}
