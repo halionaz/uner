@@ -5,6 +5,8 @@ import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
 import { usePostCheckKoreanAnswer } from '@/apis/vocabulary'
 import AnswerMark from '@/components/etc/AnswerMark'
+import Tooltip from '@/components/ui/Tooltip'
+import Icons from '@/assets/Icons'
 
 interface Props {
   curWord: Word
@@ -49,22 +51,27 @@ const WordQuestion = ({ curWord, goToNextWord }: Props) => {
   const definitionCount = curWord.definitions.length
 
   return (
-    <div className="flex-grow flex flex-col justify-center items-center gap-10">
-      <div className="text-7xl font-bold font-serif">{curWord.english}</div>
-      <form className="flex flex-col gap-4 items-center" onSubmit={handleSubmit}>
-        <Input
-          className="w-72 h-10 text-center font-semibold text-xl"
-          value={input}
-          onChange={event => setInput(event.target.value)}
-          disabled={isSubmit}
-        />
+    <div className="flex flex-grow flex-col items-center justify-center gap-10">
+      <div className="font-serif text-7xl font-bold">{curWord.english}</div>
+      <form className="flex flex-col items-center gap-4" onSubmit={handleSubmit}>
+        <div className="flex items-center gap-2">
+          <Input
+            className="h-10 w-72 text-center text-xl font-semibold"
+            value={input}
+            onChange={event => setInput(event.target.value)}
+            disabled={isSubmit}
+          />
+          <Tooltip contents={<>{description}</>} position="bottom">
+            <Icons.QuestionCircle />
+          </Tooltip>
+        </div>
         <div className="h-20">
           {isSubmit ? (
             isAnswer ? (
-              <div className="flex flex-row items-center justify-between gap-2 w-[600px] h-20">
+              <div className="flex h-20 w-[600px] flex-row items-center justify-between gap-2">
                 <div className="flex flex-row items-center gap-4">
                   <AnswerMark isAnswer={answerState} />
-                  <div className="flex flex-row gap-1">
+                  <div className="flex flex-row items-center gap-1">
                     {curWord.definitions.map((val, index) => {
                       return (
                         <span key={`definition-${val.partOfSpeech}-${index}`}>

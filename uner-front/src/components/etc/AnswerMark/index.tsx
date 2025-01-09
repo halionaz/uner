@@ -3,15 +3,15 @@ interface Props {
 }
 const AnswerMark = ({ isAnswer }: Props) => {
   return (
-    <div className={`size-20 rounded-full ${isAnswer ? 'bg-green' : 'bg-red'} flex justify-center items-center`}>
+    <div className={`size-16 rounded-full ${isAnswer ? 'bg-green' : 'bg-red'} flex items-center justify-center`}>
       {isAnswer ? (
-        <div className="bg-white size-12 rounded-full flex justify-center items-center">
-          <div className="bg-green size-6 rounded-full" />
+        <div className="flex size-10 items-center justify-center rounded-full bg-white">
+          <div className="size-6 rounded-full bg-green" />
         </div>
       ) : (
         <div className="relative">
-          <div className="fixed bg-white w-12 h-3 -translate-x-1/2 -translate-y-1/2 rotate-45"></div>
-          <div className="fixed bg-white w-12 h-3 -translate-x-1/2 -translate-y-1/2 -rotate-45"></div>
+          <div className="fixed h-2 w-10 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-white"></div>
+          <div className="fixed h-2 w-10 -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-white"></div>
         </div>
       )}
     </div>
