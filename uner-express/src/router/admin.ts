@@ -1,7 +1,8 @@
+import { deleteWords, getAllWords, postWords } from '@/controller/admin';
 import { Router } from 'express';
 
 const router = Router();
 
-router.get('words', (req, res) => {});
-router.post('words', (req, res) => {});
-router.delete('words', (req, res) => {});
+router.get('words', getAllWords);
+router.post('words', postWords);
+router.delete('words', deleteWords);
