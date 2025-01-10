@@ -1,6 +1,6 @@
 import AnswerMark from '@/components/etc/AnswerMark'
 import Button from '@/components/ui/Button'
-import { Definition } from '@/util/types/word'
+import { Definition } from '@interface/word'
 
 interface Props {
   answerState: boolean

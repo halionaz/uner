@@ -1,5 +1,5 @@
 import { apiInterface } from '@/util/axios/apiInterface'
-import { Word } from '@/util/types/word'
+import { Word } from '@interface/word'
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query'
 
 interface GetEnglishWordsRequest {
