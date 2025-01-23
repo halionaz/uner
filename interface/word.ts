@@ -12,32 +12,32 @@ export const partOfSpeechArray = [
 export const topicArray = [''] as const;
 export const importanceArray = ['TOEFL', 'KSAT', 'IELTS', 'SAT'] as const;
 
-export type PartOfSpeech = (typeof partOfSpeechArray)[number];
+export type PartOfSpeechType = (typeof partOfSpeechArray)[number];
 
-export type Topic = (typeof topicArray)[number]; // TODO: 구체적 카테고리 확장
-export type Importance = (typeof importanceArray)[number]; //TODO: Importance 세분화
+export type TopicType = (typeof topicArray)[number]; // TODO: 구체적 카테고리 확장
+export type ImportanceType = (typeof importanceArray)[number]; //TODO: Importance 세분화
 
-export interface ExampleSentence {
+export interface ExampleSentenceInterface {
   id: number;
   sentence: string;
   translation: string;
 }
 
-export interface Definition {
+export interface DefinitionInterface {
   id: number;
   definition: string;
-  partOfSpeech: PartOfSpeech;
+  partOfSpeech: PartOfSpeechType;
 }
 
-export interface Word {
+export interface WordInterface {
   id: number;
   english: string;
-  definitions: Definition[];
+  definitions: DefinitionInterface[];
   mnemonic?: string;
-  exampleSentence?: ExampleSentence[];
+  exampleSentence?: ExampleSentenceInterface[];
   difficulty: number;
-  topic: Topic[];
-  importance?: Importance[];
+  topic: TopicType[];
+  importance?: ImportanceType[];
   synonyms?: string[];
   antonyms?: string[];
 }
