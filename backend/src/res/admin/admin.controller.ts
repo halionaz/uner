@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Post } from "@nestjs/common";
 import { AdminService } from "./admin.service";
+import { PostWordRequest } from "@interface/apis/admin";
 
 @Controller('/admin')
 export class AdminController {
@@ -11,9 +12,8 @@ export class AdminController {
     }
 
     @Post('word')
-    async postWord(@Body() body: PostWordRequest) {
+    async postWord(@Body() { english, mnemonic, difficulty }: PostWordRequest) {
         // todo: Type Guarding
-        const { english, mnemonic, difficulty } = body
         return this.adminService.postWord(english, mnemonic, difficulty)
     }
 }
