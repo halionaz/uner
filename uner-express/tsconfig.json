@@ -17,5 +17,5 @@
       "@interface/*": ["../interface/*"]
     }
   },
-  "include": ["src", "../interface"]
+  "include": ["src", "../interface", "../nest/src/entities/importance.entity.ts"]
 }

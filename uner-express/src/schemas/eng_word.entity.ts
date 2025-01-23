@@ -1,6 +1,6 @@
 import { EngDefinition } from "@/schemas/eng_definition.entity";
 import { EngExampleSentence } from "@/schemas/eng_example_sentence.entity";
-import { Importance } from "@/schemas/importance.entity";
+import { Importance } from "../../../nest/src/entities/importance.entity";
 import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn, Timestamp } from "typeorm";
 
 @Entity('eng_word')

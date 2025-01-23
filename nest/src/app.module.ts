@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from '@src/app.controller';
 import { AppService } from '@src/app.service';
 import { EngWordModule } from '@src/res/engWord/engWord.module';
-import * as path from 'path';
+import path from 'path';
 
 @Module({
   imports: [

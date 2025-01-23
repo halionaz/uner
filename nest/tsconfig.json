@@ -17,8 +17,11 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
+    "esModuleInterop": true,
     "paths": {
+      "@interface/*": ["../interface/*"],
       "@src/*": ["./src/*"]
     }
-  }
+  },
+  "include": ["./src", "../interface"]
 }
