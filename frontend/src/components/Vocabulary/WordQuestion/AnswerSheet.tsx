@@ -1,10 +1,10 @@
 import AnswerMark from '@/components/etc/AnswerMark'
 import Button from '@/components/ui/Button'
-import { Definition } from '@interface/word'
+import { DefinitionInterface } from '@interface/word'
 
 interface Props {
   answerState: boolean
-  definitions: Definition[]
+  definitions: DefinitionInterface[]
   handleNextButton: () => void
 }
 const AnswerSheet = ({ answerState, definitions, handleNextButton }: Props) => {

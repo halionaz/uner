@@ -1,9 +1,13 @@
+import path from 'path';
+import dotenv from 'dotenv';
+
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from '@src/app.controller';
 import { AppService } from '@src/app.service';
-import { EngWordModule } from '@src/res/engWord/engWord.module';
-import path from 'path';
+import { EngToKorModule } from '@src/res/engToKor/engToKor.module';
+
+dotenv.config();
 
 @Module({
   imports: [
@@ -22,7 +26,7 @@ import path from 'path';
         timezone: 'local',
       }),
     }),
-    EngWordModule,
+    EngToKorModule,
   ],
   controllers: [AppController],
   providers: [AppService],
