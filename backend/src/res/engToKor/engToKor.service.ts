@@ -1,5 +1,6 @@
 import { WordInterface } from '@interface/word';
 import { Injectable } from '@nestjs/common';
+import { openai } from '@src/utils/config/OpenAI';
 
 @Injectable()
 export class EngToKorService {
