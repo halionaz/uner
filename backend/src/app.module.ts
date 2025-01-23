@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from '@src/app.controller';
 import { AppService } from '@src/app.service';
 import { EngToKorModule } from '@src/res/engToKor/engToKor.module';
+import { AdminModule } from './res/admin/admin.module';
 
 dotenv.config();
 
@@ -27,8 +28,9 @@ dotenv.config();
       }),
     }),
     EngToKorModule,
+    AdminModule
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
