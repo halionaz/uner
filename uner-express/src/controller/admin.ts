@@ -1,5 +1,5 @@
 import { insertWord } from '@/data/admin';
-import { CreateWordSchema } from '@/schemas/words';
+import { CreateWordSchema } from '@/words';
 import { ApiResponse } from '@/utils/types';
 import { Request, Response } from 'express';
 import { ResultSetHeader, RowDataPacket } from 'mysql2';
