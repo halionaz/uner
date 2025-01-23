@@ -11,7 +11,7 @@ export class AdminController {
     }
 
     @Post('word')
-    async postWord(@Body() body) {
+    async postWord(@Body() body: PostWordRequest) {
         // todo: Type Guarding
         const { english, mnemonic, difficulty } = body
         return this.adminService.postWord(english, mnemonic, difficulty)
