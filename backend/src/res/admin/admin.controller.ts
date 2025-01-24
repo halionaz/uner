@@ -1,19 +1,19 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
-import { AdminService } from "./admin.service";
-import { PostWordRequest } from "@interface/apis/admin";
+import { Body, Controller, Get, Post } from '@nestjs/common';
+import { AdminService } from './admin.service';
+import { PostWordRequest } from '@interface/apis/admin';
 
 @Controller('/admin')
 export class AdminController {
-    constructor(private readonly adminService: AdminService) { }
+  constructor(private readonly adminService: AdminService) {}
 
-    @Get('word')
-    async getWord() {
-        return this.adminService.getWord()
-    }
+  @Get('words')
+  async getWords() {
+    return this.adminService.getWords();
+  }
 
-    @Post('word')
-    async postWord(@Body() { english, mnemonic, difficulty }: PostWordRequest) {
-        // todo: Type Guarding
-        return this.adminService.postWord(english, mnemonic, difficulty)
-    }
+  @Post('words')
+  async postWords(@Body() { english, mnemonic, difficulty }: PostWordRequest) {
+    // todo: Type Guarding
+    return this.adminService.postWords(english, mnemonic, difficulty);
+  }
 }

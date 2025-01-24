@@ -1,10 +1,11 @@
+import { GetWordsRequest } from '@interface/apis/eng-to-kor';
 import { WordInterface } from '@interface/word';
 import { Injectable } from '@nestjs/common';
 import { openai } from '@src/utils/config/OpenAI';
 
 @Injectable()
 export class EngToKorService {
-  async getWords() {
+  async getWords({ level, wordCount, wrongAnswered, liked, topic }: GetWordsRequest) {
     const words: WordInterface[] = [
       {
         id: 1,
@@ -20,9 +21,7 @@ export class EngToKorService {
       {
         id: 2,
         english: 'obfuscate',
-        definitions: [
-          { id: 12, definition: '혼란스럽게 만들다', partOfSpeech: 'verb' },
-        ],
+        definitions: [{ id: 12, definition: '혼란스럽게 만들다', partOfSpeech: 'verb' }],
         difficulty: 5,
         topic: [],
       },
