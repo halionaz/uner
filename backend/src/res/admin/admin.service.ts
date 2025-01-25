@@ -1,4 +1,4 @@
-import { ImportanceType } from '@interface/types/word';
+import { ImportanceType, PartOfSpeechType, TopicType } from '@interface/types/word';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EngWordEntity } from '@src/entities/eng_word.entity';
@@ -56,6 +56,36 @@ export class AdminService {
       name,
     });
     return importance;
+  };
+
+  postTopic = async (name: TopicType) => {
+    const isExist = await this.topicRepository.findOne({
+      where: {
+        name,
+      },
+    });
+
+    if (isExist) throw new BadRequestException('이미 존재하는 토픽!');
+
+    const topic = await this.topicRepository.save({
+      name,
+    });
+    return topic;
+  };
+
+  postPartOfSpeech = async (name: PartOfSpeechType) => {
+    const isExist = await this.partOfSpeechRepository.findOne({
+      where: {
+        name,
+      },
+    });
+
+    if (isExist) throw new BadRequestException('이미 존재하는 품사!');
+
+    const partOfSpeech = await this.partOfSpeechRepository.save({
+      name,
+    });
+    return partOfSpeech;
   };
 
   postWords = async (english: string, mnemonic: string, difficulty: number) => {
