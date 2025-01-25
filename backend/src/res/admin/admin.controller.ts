@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { GetImportanceResponse, PostWithNameRequest, PostWordRequest } from '@interface/apis/admin';
 import { AdminService } from '@src/res/admin/admin.service';
-import { isImportanceType } from '@interface/types/word';
+import { isImportanceType, isPartOfSpeechType, isTopicType } from '@interface/types/word';
 
 @Controller('/admin')
 export class AdminController {
@@ -31,5 +31,13 @@ export class AdminController {
   @Post('importance')
   async postImportance(@Body() { name }: PostWithNameRequest) {
     if (isImportanceType(name)) return this.adminService.postImportance(name);
+  }
+  @Post('part-of-speech')
+  async postPartOfSpeech(@Body() { name }: PostWithNameRequest) {
+    if (isPartOfSpeechType(name)) return this.adminService.postPartOfSpeech(name);
+  }
+  @Post('topic')
+  async postTopic(@Body() { name }: PostWithNameRequest) {
+    if (isTopicType(name)) return this.adminService.postTopic(name);
   }
 }
