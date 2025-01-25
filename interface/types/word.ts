@@ -33,19 +33,19 @@ export const isRelationType = (arg:any):arg is RelationType => {
 }
 
 export interface ExampleSentenceInterface {
-  id: number;
+  id: string;
   sentence: string;
   translation: string;
 }
 
 export interface DefinitionInterface {
-  id: number;
+  id: string;
   definition: string;
   partOfSpeech: PartOfSpeechType;
 }
 
 export interface WordInterface {
-  id: number;
+  id: string;
   english: string;
   definitions: DefinitionInterface[];
   mnemonic?: string;

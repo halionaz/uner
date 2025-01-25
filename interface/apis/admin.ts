@@ -11,6 +11,6 @@ export interface PostWithNameRequest {
 }
 
 export type GetImportanceResponse = {
-    id:number
+    id:string
     name:ImportanceType
 }[]
