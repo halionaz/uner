@@ -1,5 +1,5 @@
 import { Column, Entity } from 'typeorm';
-import { ImportanceType } from '@interface/word';
+import { ImportanceType } from '@interface/types/word';
 import { CommonBigPKEntity } from '@src/entities/common/common.entity';
 
 @Entity('importance')

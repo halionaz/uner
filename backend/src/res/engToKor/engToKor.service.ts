@@ -1,5 +1,5 @@
 import { GetWordsRequest } from '@interface/apis/eng-to-kor';
-import { WordInterface } from '@interface/word';
+import { WordInterface } from '@interface/types/word';
 import { Injectable } from '@nestjs/common';
 import { openai } from '@src/utils/config/OpenAI';
 

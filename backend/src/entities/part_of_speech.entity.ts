@@ -1,5 +1,5 @@
 import { Column, Entity } from 'typeorm';
-import { PartOfSpeechType } from '@interface/word';
+import { PartOfSpeechType } from '@interface/types/word';
 import { CommonBigPKEntity } from '@src/entities/common/common.entity';
 
 @Entity('part_of_speech')

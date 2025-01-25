@@ -1,4 +1,4 @@
-import { RelationType } from '@interface/word';
+import { RelationType } from '@interface/types/word';
 import { CommonBigPKEntity } from '@src/entities/common/common.entity';
 import { EngWordEntity } from '@src/entities/eng_word.entity';
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';

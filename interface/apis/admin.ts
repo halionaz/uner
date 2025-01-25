@@ -1,9 +1,16 @@
+import { ImportanceType } from "@interface/types/word"
+
 export interface PostWordRequest {
     english: string
     mnemonic: string
     difficulty: number
 }
 
-export interface PostWithName {
+export interface PostWithNameRequest {
     name:string
 }
+
+export type GetImportanceResponse = {
+    id:number
+    name:ImportanceType
+}[]
