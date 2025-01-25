@@ -1,4 +1,4 @@
-import Button from '@/components/ui/Button'
+import Button from '@/common/components/ui/Button'
 
 interface Props {
   wordCount: number

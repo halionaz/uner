@@ -3,3 +3,7 @@ export interface PostWordRequest {
     mnemonic: string
     difficulty: number
 }
+
+export interface PostWithName {
+    name:string
+}

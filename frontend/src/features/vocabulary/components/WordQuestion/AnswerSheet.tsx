@@ -1,6 +1,6 @@
-import AnswerMark from '@/components/etc/AnswerMark'
-import Button from '@/components/ui/Button'
-import { DefinitionInterface } from '@interface/word'
+import { DefinitionInterface } from '@interface/types/word'
+import AnswerMark from '@/features/vocabulary/components/AnswerMark'
+import Button from '@/common/components/ui/Button'
 
 interface Props {
   answerState: boolean

@@ -1,15 +1,15 @@
 import { Suspense } from 'react'
 
-import LoadingScreen from '@/components/etc/LoadingScreen'
 import { useRoutes } from 'react-router-dom'
 import routes from '@/router'
-import GlobalStyleProvider from '@/util/clients/GlobalStyleProvider'
+import Loading from '@/common/components/Loading'
+import GlobalStyleProvider from '@/lib/clients/GlobalStyleProvider'
 
 function App() {
   const router = useRoutes(routes)
 
   return (
-    <Suspense fallback={<LoadingScreen />}>
+    <Suspense fallback={<Loading />}>
       <GlobalStyleProvider>{router}</GlobalStyleProvider>
     </Suspense>
   )

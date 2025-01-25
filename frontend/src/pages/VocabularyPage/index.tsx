@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { useGetEnglishWords } from '@/apis/vocabulary'
+import { useGetEnglishWords } from '@/features/vocabulary/apis/useGetEnglishWords'
 
-import WordQuestion from '@/components/Vocabulary/WordQuestion'
-import StatusBar from '@/components/Vocabulary/StatusBar'
-import Ready from '@/components/Vocabulary/Ready'
+import WordQuestion from '@/features/vocabulary/components/WordQuestion'
+import StatusBar from '@/features/vocabulary/components/StatusBar'
+import Ready from '@/features/vocabulary/components/Ready'
 
 const VocabularyPage = () => {
   const [wordCount] = useState(4)

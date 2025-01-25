@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { WordInterface } from '@interface/word'
-import Button from '@/components/ui/Button'
-import Input from '@/components/ui/Input'
-import { usePostCheckKoreanAnswer } from '@/apis/vocabulary'
-import Tooltip from '@/components/ui/Tooltip'
-import Icons from '@/assets/Icons'
-import AnswerSheet from '@/components/Vocabulary/WordQuestion/AnswerSheet'
 import { useSpeechSynthesis } from 'react-speech-kit'
+import { WordInterface } from '@interface/types/word'
+import { usePostCheckKoreanAnswer } from '@/features/vocabulary/apis/usePostCheckKoreanAnswer'
+import Tooltip from '@/common/components/ui/Tooltip'
+import Icons from '@/lib/assets/Icons'
+import Input from '@/common/components/ui/Input'
+import AnswerSheet from '@/features/vocabulary/components/WordQuestion/AnswerSheet'
+import Button from '@/common/components/ui/Button'
 
 interface Props {
   curWord: WordInterface
