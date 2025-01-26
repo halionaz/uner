@@ -14,7 +14,7 @@ export const isPartOfSpeechType = (arg:any):arg is PartOfSpeechType => {
   return partOfSpeechArray.indexOf(arg) !== -1
 }
 
-export const topicArray = [''] as const;
+export const topicArray = ['newly'] as const;
 export type TopicType = (typeof topicArray)[number]; // TODO: 구체적 카테고리 확장
 export const isTopicType = (arg:any):arg is TopicType => {
   return topicArray.indexOf(arg) !== -1
