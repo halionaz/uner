@@ -1,4 +1,4 @@
-import { ImportanceType, PartOfSpeechType, TopicType } from '@interface/types/word';
+import { ImportanceType, PartOfSpeechType, TopicType, WordInterface } from '@interface/types/word';
 
 export interface PostWordRequest {
   english: string;
@@ -15,6 +15,8 @@ export interface PostWordRequest {
   topic: { id: string }[];
   importance: { id: string }[];
 }
+
+export type GetWordsResponse = WordInterface[];
 
 export interface PostWithNameRequest {
   name: string;

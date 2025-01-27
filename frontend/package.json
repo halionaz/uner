@@ -11,6 +11,7 @@
     "tailwind:init": "yarn tailwind init -p"
   },
   "dependencies": {
+    "@hookform/error-message": "^2.0.1",
     "@mantine/core": "^7.16.2",
     "@mantine/hooks": "^7.16.2",
     "@mantine/vanilla-extract": "^7.16.2",
