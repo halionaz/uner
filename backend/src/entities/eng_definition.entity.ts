@@ -8,11 +8,11 @@ export class EngDefinitionEntity extends CommonBigPKEntity {
   @Column('text')
   definition: string;
 
-  @ManyToOne(() => EngWordEntity, (word) => word.definitions, { eager: true })
+  @ManyToOne(() => EngWordEntity, (word) => word.definitions)
   @JoinColumn({ name: 'word_id', referencedColumnName: 'id' })
   word: EngWordEntity;
 
-  @ManyToOne(() => PartOfSpeechEntity, { eager: true })
+  @ManyToOne(() => PartOfSpeechEntity)
   @JoinColumn({ name: 'part_of_speech_id', referencedColumnName: 'id' })
   partOfSpeech: PartOfSpeechEntity;
 }

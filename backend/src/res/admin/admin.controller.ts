@@ -19,43 +19,37 @@ export class AdminController {
   }
 
   @Post('words')
-  async postWords(@Body() { english, mnemonic, difficulty }: PostWordRequest) {
+  async postWords(@Body() request: PostWordRequest) {
     // todo: Type Guarding
-    return this.adminService.postWords(english, mnemonic, difficulty);
+    return this.adminService.postWords(request);
   }
 
   @Get('importance')
   async getImportance() {
     const importanceArray = await this.adminService.getImportance();
-    const ret: GetImportanceResponse = importanceArray.map((importance) => ({
-      id: importance.id,
-      name: importance.name,
-    }));
-    return ret;
+    return importanceArray;
   }
   @Get('part-of-speech')
   async getPartOfSpeech() {
     const partOfSpeechArray = await this.adminService.getPartOfSpeech();
-    const ret: GetPartOfSpeechResponse = partOfSpeechArray.map(({ id, name }) => ({ id, name }));
-    return ret;
+    return partOfSpeechArray;
   }
   @Get('topic')
   async getTopic() {
     const topicArray = await this.adminService.getTopics();
-    const ret: GetTopicsResponse = topicArray.map(({ id, name }) => ({ id, name }));
-    return ret;
+    return topicArray;
   }
 
   @Post('importance')
   async postImportance(@Body() { name }: PostWithNameRequest) {
-    if (isImportanceType(name)) return this.adminService.postImportance(name);
+    return this.adminService.postImportance(name);
   }
   @Post('part-of-speech')
   async postPartOfSpeech(@Body() { name }: PostWithNameRequest) {
-    if (isPartOfSpeechType(name)) return this.adminService.postPartOfSpeech(name);
+    return this.adminService.postPartOfSpeech(name);
   }
   @Post('topic')
   async postTopic(@Body() { name }: PostWithNameRequest) {
-    if (isTopicType(name)) return this.adminService.postTopic(name);
+    return this.adminService.postTopic(name);
   }
 }
