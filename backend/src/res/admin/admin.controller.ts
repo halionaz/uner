@@ -1,5 +1,11 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { GetImportanceResponse, PostWithNameRequest, PostWordRequest } from '@interface/apis/admin';
+import {
+  GetImportanceResponse,
+  GetPartOfSpeechResponse,
+  GetTopicsResponse,
+  PostWithNameRequest,
+  PostWordRequest,
+} from '@interface/apis/admin';
 import { AdminService } from '@src/res/admin/admin.service';
 import { isImportanceType, isPartOfSpeechType, isTopicType } from '@interface/types/word';
 
@@ -25,6 +31,18 @@ export class AdminController {
       id: importance.id,
       name: importance.name,
     }));
+    return ret;
+  }
+  @Get('part-of-speech')
+  async getPartOfSpeech() {
+    const partOfSpeechArray = await this.adminService.getPartOfSpeech();
+    const ret: GetPartOfSpeechResponse = partOfSpeechArray.map(({ id, name }) => ({ id, name }));
+    return ret;
+  }
+  @Get('topic')
+  async getTopic() {
+    const topicArray = await this.adminService.getTopics();
+    const ret: GetTopicsResponse = topicArray.map(({ id, name }) => ({ id, name }));
     return ret;
   }
 
