@@ -1,6 +1,6 @@
 import { useGetImportance } from '@/features/admin/apis/useGetImportance'
 
-const ImportanceContents = () => {
+const ImportancePage = () => {
   const { data } = useGetImportance()
 
   return (
@@ -14,4 +14,4 @@ const ImportanceContents = () => {
     </div>
   )
 }
-export default ImportanceContents
+export default ImportancePage

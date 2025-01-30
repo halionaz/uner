@@ -1,25 +1,22 @@
-import { AdminPageType } from '@/pages/AdminPage/types'
+import { Link, useLocation } from 'react-router-dom'
 
-interface Props {
-  curPage: AdminPageType
-  handlePage: (page: AdminPageType) => void
-}
-const Sidebar = ({ curPage, handlePage }: Props) => {
+const Sidebar = () => {
+  const { pathname } = useLocation()
+  const curPage = pathname.slice(pathname.lastIndexOf('/'), pathname.length)
+  console.log(curPage)
+
   return (
     <div className="flex w-56 flex-col items-stretch gap-10">
-      <button onClick={() => handlePage(undefined)}>
+      <Link to={''}>
         <h1 className="mt-4 text-center font-serif text-xl font-bold">uner admin</h1>
-      </button>
+      </Link>
       <div className="flex flex-col gap-4">
-        <button className={`${curPage === 'words' ? 'text-red' : 'text-black'}`} onClick={() => handlePage('words')}>
+        <Link to={'words'} className={`${curPage === '/words' ? 'text-red' : 'text-black'}`}>
           단어 관리
-        </button>
-        <button
-          className={`${curPage === 'importance' ? 'text-red' : 'text-black'}`}
-          onClick={() => handlePage('importance')}
-        >
+        </Link>
+        <Link to={'importance'} className={`${curPage === '/importance' ? 'text-red' : 'text-black'}`}>
           중요도 태그 관리
-        </button>
+        </Link>
       </div>
     </div>
   )

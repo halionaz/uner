@@ -123,6 +123,20 @@ const PostWordForm = () => {
               />
             </div>
           </div>
+          <div className={s.Section}>
+            <MultiSelect
+              label="키워드"
+              data={topicList.map(({ id, name }) => ({ label: name, value: id }))}
+              onChange={value => setTopic(value.map(id => ({ id })))}
+            />
+          </div>
+          <div className={s.Section}>
+            <MultiSelect
+              label="카테고리"
+              data={importanceList.map(({ id, name }) => ({ label: name, value: id }))}
+              onChange={value => setImportance(value.map(id => ({ id })))}
+            />
+          </div>
         </div>
         <div className={s.InputColumn}>
           <div className={s.Section}>
@@ -229,22 +243,6 @@ const PostWordForm = () => {
             >
               추가
             </Button>
-          </div>
-        </div>
-        <div className={s.InputColumn}>
-          <div className={s.Section}>
-            <MultiSelect
-              label="키워드"
-              data={topicList.map(({ id, name }) => ({ label: name, value: id }))}
-              onChange={value => setTopic(value.map(id => ({ id })))}
-            />
-          </div>
-          <div className={s.Section}>
-            <MultiSelect
-              label="카테고리"
-              data={importanceList.map(({ id, name }) => ({ label: name, value: id }))}
-              onChange={value => setImportance(value.map(id => ({ id })))}
-            />
           </div>
         </div>
       </div>
